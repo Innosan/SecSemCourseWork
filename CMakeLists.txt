@@ -11,4 +11,10 @@ add_executable(SecSemCourseWork main.cpp
         Utils/utils.h
         Utils/utils.cpp
         Sort/QuickSort/QuickSort.cpp
-        Sort/QuickSort/QuickSort.h)
+        Sort/QuickSort/QuickSort.h
+        Utils/Inputs/inputs.h
+        Utils/Inputs/inputs.cpp
+        Menu/Menu.cpp
+        Menu/Menu.h
+        Menu/MenuOption.cpp
+        Menu/MenuOption.h)

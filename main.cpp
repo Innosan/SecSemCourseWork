@@ -2,20 +2,37 @@
 #include "Sort/QuickSort/QuickSort.h"
 
 #include "Utils/utils.h"
+#include <memory>
+
+#include "Menu/Menu.h"
+#include "Utils/Inputs/inputs.h"
 
 int main() {
-    BubbleSort<int> bubbleSorter;
-    QuickSort<int> quickSorter;
+    Menu::printWelcomeMessage();
+    std::unique_ptr<Menu> menu = std::make_unique<Menu>();
+    menu->initializeMenu();
 
-    std::vector<int> array = {1, 2, 3, 4, 5, 6, 7};
+    int pickedItem = 0;
+    do {
+        menu->display();
 
-    bubbleSorter.sort(array, array.size());
-    printVector(array, "Sorted array: ");
-    bubbleSorter.printCounters();
+        pickedItem = getIntUserInput("Choose an option: ", Menu::optionIds::LINE_BY_LINE - 1, Menu::optionIds::EXIT + 1);
 
-    quickSorter.sort(array, array.size());
-    printVector(array, "Sorted array: ");
-    quickSorter.printCounters();
+        menu->choose(pickedItem);
+    } while (pickedItem != Menu::optionIds::EXIT);
+
+//    BubbleSort<int> bubbleSorter;
+//    QuickSort<int> quickSorter;
+//
+//    std::vector<int> array = {1, 2, 3, 4, 5, 6, 7};
+//
+//    bubbleSorter.sort(array, array.size());
+//    printVector(array, "Sorted array: ");
+//    bubbleSorter.printCounters();
+//
+//    quickSorter.sort(array, array.size());
+//    printVector(array, "Sorted array: ");
+//    quickSorter.printCounters();
 
     return 0;
 }
