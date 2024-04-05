@@ -7,9 +7,15 @@
 
 #include <iostream>
 #include <vector>
+#include <random>
+#include <string>
 
 template <typename T>
 void printVector(const std::vector<T>& array, const std::string& message);
+
+std::vector<int> splitIntoDigits(int num);
+
+int convertToNumber(const std::vector<int>& digits);
 
 template <typename T>
 void printMatrix(std::vector<std::vector<T>> matrix, const std::string& message) {
