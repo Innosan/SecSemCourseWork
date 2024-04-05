@@ -17,4 +17,9 @@ add_executable(SecSemCourseWork main.cpp
         Menu/Menu.cpp
         Menu/Menu.h
         Menu/MenuOption.cpp
-        Menu/MenuOption.h)
+        Menu/MenuOption.h
+        Utils/Files/validation.h
+        Utils/Files/validation.cpp
+        Utils/Files/files.cpp
+        Utils/Files/files.h
+        Utils/randomGeneration.h)

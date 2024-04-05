@@ -5,7 +5,12 @@
 #include <iostream>
 #include <memory>
 #include <vector>
+#include <random>
+
 #include "Menu.h"
+#include "../Utils/Inputs/inputs.h"
+#include "../Utils/randomGeneration.h"
+#include "../Utils/utils.h"
 
 void Menu::display() {
     std::cout << "\n";
@@ -43,7 +48,11 @@ void Menu::initializeMenu() {
 
             // Read from file
             MenuOption(Menu::RANDOM, "Generate random matrix",  []() {
-                // TODO: Implement
+                int n = getIntUserInput("Input N (rows):", 1, 300);
+                int m = getIntUserInput("Input M (columns):", 1, 300);
+
+                auto matrix = generateRandomMatrix<int>(n, m, 1., 100.);
+                printMatrix(matrix, "Unsorted matrix");
             }),
 
             // Exit

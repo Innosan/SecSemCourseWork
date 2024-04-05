@@ -3,7 +3,9 @@
 //
 
 #include "utils.h"
-void printVector(const std::vector<int>& array, const std::string& message) {
+
+template <typename T>
+void printVector(const std::vector<T>& array, const std::string& message) {
     std::cout << message << std::endl;
 
     for (int i : array) {

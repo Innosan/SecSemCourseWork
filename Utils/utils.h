@@ -8,6 +8,20 @@
 #include <iostream>
 #include <vector>
 
-void printVector(const std::vector<int>& array, const std::string& message);
+template <typename T>
+void printVector(const std::vector<T>& array, const std::string& message);
+
+template <typename T>
+void printMatrix(std::vector<std::vector<T>> matrix, const std::string& message) {
+    std::cout << message << std::endl;
+
+    for (auto row : matrix) {
+        for (T elem : row) {
+            std::cout << elem << "\t";
+        }
+
+        std::cout << std::endl;
+    }
+};
 
 #endif //SECSEMCOURSEWORK_UTILS_H
