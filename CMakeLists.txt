@@ -22,4 +22,10 @@ add_executable(SecSemCourseWork main.cpp
         Utils/Files/validation.cpp
         Utils/Files/files.cpp
         Utils/Files/files.h
-        Utils/randomGeneration.h)
+        Utils/randomGeneration.h
+        Sort/InsertionSort/InsertionSort.cpp
+        Sort/InsertionSort/InsertionSort.h
+        Sort/SelectionSort/SelectionSort.cpp
+        Sort/SelectionSort/SelectionSort.h
+        Sort/ShellSort/ShellSort.cpp
+        Sort/ShellSort/ShellSort.h)

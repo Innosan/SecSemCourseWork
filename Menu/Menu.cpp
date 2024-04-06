@@ -12,6 +12,7 @@
 #include "../Utils/utils.h"
 #include "../Sort/QuickSort/QuickSort.h"
 #include "../Sort/BubbleSort/BubbleSort.h"
+#include "../Sort/ShellSort/ShellSort.h"
 
 void Menu::display() {
     std::cout << "\n";
@@ -36,13 +37,13 @@ void Menu::printWelcomeMessage() {
 };
 
 void runValueSorting(std::vector<std::vector<int>>& matrix) {
-    BubbleSort<int> bubbleSorter;
+    ShellSort<int> shellSorter;
 
     for (auto& row : matrix) {
         for (auto& elem : row) {
             std::vector<int> digits = splitIntoDigits(elem);
 
-            bubbleSorter.sort(digits, digits.size());
+            shellSorter.sort(digits, digits.size());
 
             elem = convertToNumber(digits);
         }
@@ -59,7 +60,7 @@ void runValueSorting(std::vector<std::vector<int>>& matrix) {
         }
 
         // Sort the temporary vector
-        std::sort(temp.begin(), temp.end());
+        shellSorter.sort(temp, n);
 
         // Copy the sorted elements back into the j-th column
         for (int i = 0; i < n; ++i) {
