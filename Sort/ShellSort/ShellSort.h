@@ -10,7 +10,8 @@
 template <typename T>
 class ShellSort : public ISort<T> {
 public:
-    void sort(std::vector<T>& array, int size) override {
+    void sort(std::vector<T>& array, int size, SortOrder sortOrder) override {
+        this->setComparisonOperation(sortOrder);
 
         // Start with a big gap, then reduce the gap
         for (int gap = size/2; gap > 0; gap /= 2) {
@@ -26,7 +27,7 @@ public:
 
                 // shift earlier gap-sorted elements up until the correct location for a[i] is found
                 int j;
-                for (j = i; j >= gap && array[j - gap] > temp; j -= gap) {
+                for (j = i; j >= gap && this->compareOperation(array[j - gap], temp); j -= gap) {
                     array[j] = array[j - gap];
 
                     this->swapCount++;

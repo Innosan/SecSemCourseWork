@@ -10,14 +10,16 @@
 template <typename T>
 class SelectionSort : public ISort<T> {
 public:
-    void sort(std::vector<T>& array, int size) override {
+    void sort(std::vector<T>& array, int size, SortOrder sortOrder) override {
+        this->setComparisonOperation(sortOrder);
+
         for (int i = 0; i < size - 1; i++) {
             int minIndex = i;
 
             for (int j = i + 1; j < size; j++) {
                 this->compareCount++;
 
-                if (array[j] < array[minIndex]) {
+                if (this->compareOperation(array[minIndex], array[j])) {
                     minIndex = j;
                 }
             }

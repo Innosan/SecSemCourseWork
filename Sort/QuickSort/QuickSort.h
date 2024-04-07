@@ -16,7 +16,8 @@ class QuickSort : public ISort<T> {
         for (int j = low; j <= high - 1; j++) {
             this->compareCount++;
 
-            if (array[j] < pivot) {
+            // Reverse the comparison operation
+            if (!this->compareOperation(array[j], pivot)) {
                 i++;
 
                 // Manually swap array[i] and array[j]
@@ -47,10 +48,10 @@ class QuickSort : public ISort<T> {
         }
     }
 public:
-    void sort(std::vector<T>& array, int size) {
+    void sort(std::vector<T>& array, int size, SortOrder sortOrder) override {
+        this->setComparisonOperation(sortOrder);
         quickSort(array, 0, size - 1);
     }
 };
-
 
 #endif //SECSEMCOURSEWORK_QUICKSORT_H

@@ -11,7 +11,15 @@
 #include <string>
 
 template <typename T>
-void printVector(const std::vector<T>& array, const std::string& message);
+void printVector(const std::vector<T>& array, const std::string& message) {
+    std::cout << std::endl << message << std::endl;
+
+    for (int i : array) {
+        std::cout << i << " ";
+    }
+
+    std::cout << std::endl;
+};
 
 std::vector<int> splitIntoDigits(int num);
 

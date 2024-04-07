@@ -10,9 +10,7 @@
 #include "../Utils/Inputs/inputs.h"
 #include "../Utils/randomGeneration.h"
 #include "../Utils/utils.h"
-#include "../Sort/QuickSort/QuickSort.h"
-#include "../Sort/BubbleSort/BubbleSort.h"
-#include "../Sort/ShellSort/ShellSort.h"
+#include "../Sort/runSorts.h"
 
 void Menu::display() {
     std::cout << "\n";
@@ -28,47 +26,17 @@ void Menu::choose(int index) {
 
 void Menu::printWelcomeMessage() {
     std::cout << "Fomin Mikhail Vital\'evich, group 4307, number 25" << std::endl;
-    std::cout << "Test 3, task 7." << std::endl;
+    std::cout << "Course work." << std::endl;
 
-    std::cout << "For two given texts, find the longest common substring." << std::endl << std::endl;
-    std::cout << "The program should output the position at which the text begins in each file, " << std::endl;
-    std::cout << "the length of the line and the text of the line itself." << std::endl;
-    std::cout << "Provide necessary checks of source data." << std::endl;
+    std::cout << "You need to create a console program to sort an array of data" << std::endl;
+    std::cout << "by methods: bubble, selection, insertion, Shell and quick sorting." << std::endl;
+    std::cout << "Order the digits in each value of the numbers in the matrix in ascending order, " << std::endl;
+    std::cout << "then order the data in the columns in descending order." << std::endl;
+
+    std::cout << "Print on the screen unordered (once) and ordered (for each of the methods) data arrays." << std::endl;
+    std::cout << "Make a comparative table of the effectiveness of the methods, in which the number of comparisons and overrides" << std::endl;
+    std::cout << "in which you should indicate the number of comparisons and permutations of variables in each sorting method in each sorting method." << std::endl;
 };
-
-void runValueSorting(std::vector<std::vector<int>>& matrix) {
-    ShellSort<int> shellSorter;
-
-    for (auto& row : matrix) {
-        for (auto& elem : row) {
-            std::vector<int> digits = splitIntoDigits(elem);
-
-            shellSorter.sort(digits, digits.size());
-
-            elem = convertToNumber(digits);
-        }
-    }
-
-    int n = matrix.size(); // number of rows
-    int m = matrix[0].size(); // number of columns
-
-    for (int j = 0; j < m; ++j) {
-        // Create a temporary vector and copy the j-th column into it
-        std::vector<int> temp(n);
-        for (int i = 0; i < n; ++i) {
-            temp[i] = matrix[i][j];
-        }
-
-        // Sort the temporary vector
-        shellSorter.sort(temp, n);
-
-        // Copy the sorted elements back into the j-th column
-        for (int i = 0; i < n; ++i) {
-            matrix[i][j] = temp[i];
-        }
-    }
-}
-
 
 void Menu::initializeMenu() {
     std::vector<MenuOption> items = {
@@ -89,7 +57,7 @@ void Menu::initializeMenu() {
             auto matrix = generateRandomMatrix<int>(n, m, 1., 100.);
             printMatrix(matrix, "Unsorted matrix");
 
-            runValueSorting(matrix);
+            runSorts(matrix);
             printMatrix(matrix, "Sorted matrix");
         }),
 

@@ -11,11 +11,13 @@
 template <typename T>
 class BubbleSort : public ISort<T> {
 public:
-    void sort(std::vector<T>& array, int size) override {
+    void sort(std::vector<T>& array, int size, SortOrder sortOrder) override {
+        this->setComparisonOperation(sortOrder);
+
         for (int i = 0; i < size - 1; i++) {
             for (int j = 0; j < size - i - 1; j++) {
                 this->compareCount++;
-                if (array[j] > array[j + 1]) {
+                if (this->compareOperation(array[j], array[j + 1])) {
                     // Swap the elements if they are in the wrong order
                     T temp = array[j];
                     array[j] = array[j + 1];

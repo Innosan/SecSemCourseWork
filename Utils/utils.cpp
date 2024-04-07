@@ -4,17 +4,6 @@
 
 #include "utils.h"
 
-template <typename T>
-void printVector(const std::vector<T>& array, const std::string& message) {
-    std::cout << message << std::endl;
-
-    for (int i : array) {
-        std::cout << i << " ";
-    }
-
-    std::cout << std::endl;
-}
-
 std::vector<int> splitIntoDigits(int num) {
     std::vector<int> digits;
     std::string numStr = std::to_string(num);
