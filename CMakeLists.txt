@@ -31,5 +31,5 @@ add_executable(SecSemCourseWork main.cpp
         Sort/ShellSort/ShellSort.h
         Sort/runSorts.h
         Sort/runSorts.cpp
-        Utils/tables.cpp
-        Utils/tables.h)
+        Utils/Tables/tables.cpp
+        Utils/Tables/tables.h)

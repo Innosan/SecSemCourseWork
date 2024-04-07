@@ -7,10 +7,15 @@
 #include <vector>
 
 #include "Menu.h"
+
 #include "../Utils/Inputs/inputs.h"
 #include "../Utils/randomGeneration.h"
 #include "../Utils/utils.h"
+
 #include "../Sort/runSorts.h"
+
+#include "../Utils/Files/validation.h"
+#include "../Utils/Files/files.h"
 
 void Menu::display() {
     std::cout << "\n";
@@ -40,16 +45,32 @@ void Menu::printWelcomeMessage() {
 
 void Menu::initializeMenu() {
     std::vector<MenuOption> items = {
-        // Add mammal
         MenuOption(Menu::LINE_BY_LINE, "Input matrix line by line",  []() {
-            // TODO: Implement
+            int n = getIntUserInput("Input N (rows):", 1, 300);
+            int m = getIntUserInput("Input M (columns):", 1, 300);
+
+            auto matrix = getMatrixUserInput("Input matrix elements: ", n, m);
+            printMatrix(matrix, "Unsorted matrix");
+
+            // TODO: Implement sorting
         }),
 
         MenuOption(Menu::FROM_FILE, "Import matrix from file",  []() {
-            // TODO: Implement
+            std::string filePath;
+            while (true) {
+                filePath = getValidFilePath();
+                if (fileExists(filePath)) {
+                    break;
+                }
+                std::cout << "File does not exist. Please enter a new path." << std::endl;
+            }
+
+            auto matrix = getMatrixFromFile<double>(filePath);
+            printMatrix(matrix, "Unsorted matrix");
+
+            // TODO: Implement sorting
         }),
 
-        // Read from file
         MenuOption(Menu::RANDOM, "Generate random matrix",  []() {
             int n = getIntUserInput("Input N (rows):", 1, 300);
             int m = getIntUserInput("Input M (columns):", 1, 300);
@@ -61,7 +82,6 @@ void Menu::initializeMenu() {
             printMatrix(matrix, "Sorted matrix");
         }),
 
-        // Exit
         MenuOption(Menu::EXIT, "Exit",  []() { exit(EXIT_SUCCESS); })
     };
 

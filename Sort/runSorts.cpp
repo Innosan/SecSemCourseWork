@@ -12,7 +12,7 @@
 #include "InsertionSort/InsertionSort.h"
 
 #include "../Utils/utils.h"
-#include "../Utils/tables.h"
+#include "../Utils/Tables/tables.h"
 
 void sorter(std::vector<int>& array) {
     SelectionSort<int> selectionSort;
