@@ -18,6 +18,8 @@ public:
             for (int j = 0; j < size - i - 1; j++) {
                 this->compareCount++;
                 if (this->compareOperation(array[j], array[j + 1])) {
+                    // TODO: Ask about changing to std::swap
+                    
                     // Swap the elements if they are in the wrong order
                     T temp = array[j];
                     array[j] = array[j + 1];

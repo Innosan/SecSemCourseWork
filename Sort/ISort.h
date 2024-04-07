@@ -23,8 +23,22 @@ protected:
     std::function<bool(T, T)> compareOperation;
 
 public:
+    /**
+     * Sort the array in place
+     *
+     * @param array - the array to be sorted
+     * @param size - the size of the array
+     * @param sortOrder - the order in which the array should be sorted
+     *
+     * @example quickSorter.sort(array, array.size(), ASC);
+     */
     virtual void sort(std::vector<T>& array, int size, SortOrder sortOrder) = 0;
 
+    /**
+     * Set the comparison operation based on the sort order
+     *
+     * @param sortOrder - the order in which the array should be sorted
+     */
     void setComparisonOperation(SortOrder sortOrder) {
         if (sortOrder == ASC) {
             compareOperation = [](T a, T b) { return a > b; };

@@ -59,12 +59,12 @@ void sorter(std::vector<int>& array) {
 
     std::cout << "Results: " << std::endl;
     std::vector<std::vector<std::string>> results = {
-            {"Algorithm", "Swaps", "Compares"},
-            {"Selection Sort", std::to_string(selectionSort.getSwapCount()), std::to_string(selectionSort.getCompareCount())},
-            {"Shell Sort", std::to_string(shellSort.getSwapCount()), std::to_string(shellSort.getCompareCount())},
-            {"Quick Sort", std::to_string(quickSort.getSwapCount()), std::to_string(quickSort.getCompareCount())},
-            {"Bubble Sort", std::to_string(bubbleSort.getSwapCount()), std::to_string(bubbleSort.getCompareCount())},
-            {"Insertion Sort", std::to_string(insertionSort.getSwapCount()), std::to_string(insertionSort.getCompareCount())}
+        {"Algorithm", "Swaps", "Compares"},
+        {"Selection Sort", std::to_string(selectionSort.getSwapCount()), std::to_string(selectionSort.getCompareCount())},
+        {"Shell Sort", std::to_string(shellSort.getSwapCount()), std::to_string(shellSort.getCompareCount())},
+        {"Quick Sort", std::to_string(quickSort.getSwapCount()), std::to_string(quickSort.getCompareCount())},
+        {"Bubble Sort", std::to_string(bubbleSort.getSwapCount()), std::to_string(bubbleSort.getCompareCount())},
+        {"Insertion Sort", std::to_string(insertionSort.getSwapCount()), std::to_string(insertionSort.getCompareCount())}
     };
 
     printTable(results);

@@ -21,8 +21,20 @@ void printVector(const std::vector<T>& array, const std::string& message) {
     std::cout << std::endl;
 };
 
+/**
+ * Slice a number into its digits
+ *
+ * @param num - the number to be sliced
+ * @return a vector of digits
+ */
 std::vector<int> splitIntoDigits(int num);
 
+/**
+ * Convert a vector of digits into a number
+ *
+ * @param digits - the vector of digits
+ * @return the number
+ */
 int convertToNumber(const std::vector<int>& digits);
 
 template <typename T>

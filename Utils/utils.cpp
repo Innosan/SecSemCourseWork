@@ -5,6 +5,8 @@
 #include "utils.h"
 
 std::vector<int> splitIntoDigits(int num) {
+    // TODO: Ask about slicing number that ends with 0 (should we drop the zeros?)
+
     std::vector<int> digits;
     std::string numStr = std::to_string(num);
 
@@ -17,6 +19,7 @@ std::vector<int> splitIntoDigits(int num) {
 
 int convertToNumber(const std::vector<int>& digits) {
     std::string numStr;
+
     for (int digit : digits) {
         numStr += std::to_string(digit);
     }
