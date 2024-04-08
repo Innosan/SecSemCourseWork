@@ -8,10 +8,13 @@
 #include <random>
 
 template <typename T>
-std::vector<std::vector<T>> generateRandomMatrix(int n, int m, double minValue, double maxValue) {
+std::vector<std::vector<T>> generateRandomMatrix(double minValue, double maxValue) {
     std::random_device rd; // Seed for random number generation
     std::mt19937 gen(rd());  // Mersenne Twister random number engine
     std::uniform_real_distribution dis(minValue, maxValue); // Distribution for random values
+
+    int n = getIntUserInput("Input N (rows):", 1, 300);
+    int m = getIntUserInput("Input M (columns):", 1, 300);
 
     std::vector<std::vector<T>> matrix(n, std::vector<T>(m));
 

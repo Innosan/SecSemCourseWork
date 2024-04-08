@@ -46,13 +46,20 @@ void Menu::printWelcomeMessage() {
 void Menu::initializeMenu() {
     std::vector<MenuOption> items = {
         MenuOption(Menu::LINE_BY_LINE, "Input matrix line by line",  []() {
-            int n = getIntUserInput("Input N (rows):", 1, 300);
-            int m = getIntUserInput("Input M (columns):", 1, 300);
+            bool matrixType = getBoolConfirmation("Int or double? (1/0)");
 
-            auto matrix = getMatrixUserInput("Input matrix elements: ", n, m);
-            printMatrix(matrix, "Unsorted matrix");
+            if (matrixType) {
+                auto matrix = getMatrixUserInput<int>("Input integer matrix elements: ");
+                printMatrix(matrix, "Unsorted matrix");
 
-            // TODO: Implement sorting
+                runSorts(matrix);
+                printMatrix(matrix, "Sorted matrix");
+            } else {
+                auto matrix = getMatrixUserInput<double>("Input double matrix elements: ");
+                printMatrix(matrix, "Unsorted matrix");
+            }
+
+            // TODO: Implement double sorting (slicing and sorting digits)
         }),
 
         MenuOption(Menu::FROM_FILE, "Import matrix from file",  []() {
@@ -68,14 +75,11 @@ void Menu::initializeMenu() {
             auto matrix = getMatrixFromFile<double>(filePath);
             printMatrix(matrix, "Unsorted matrix");
 
-            // TODO: Implement sorting
+            // TODO: Implement double sorting (slicing and sorting digits)
         }),
 
         MenuOption(Menu::RANDOM, "Generate random matrix",  []() {
-            int n = getIntUserInput("Input N (rows):", 1, 300);
-            int m = getIntUserInput("Input M (columns):", 1, 300);
-
-            auto matrix = generateRandomMatrix<int>(n, m, 1., 100.);
+            auto matrix = generateRandomMatrix<int>(1., 100.);
             printMatrix(matrix, "Unsorted matrix");
 
             runSorts(matrix);
