@@ -43,6 +43,8 @@ void Menu::printWelcomeMessage() {
     std::cout << "in which you should indicate the number of comparisons and permutations of variables in each sorting method in each sorting method." << std::endl;
 };
 
+
+
 void Menu::initializeMenu() {
     std::vector<MenuOption> items = {
         MenuOption(Menu::LINE_BY_LINE, "Input matrix line by line",  []() {

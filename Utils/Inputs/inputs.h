@@ -10,17 +10,6 @@
 #include <limits>
 
 /**
- * \brief Get int user int input.
- *
- * \param welcomeMessage - message to display to the user
- * \param min - minimum value
- * \param max - maximum value
- *
- * \return int user input
- */
-int getIntUserInput(const std::string& welcomeMessage, int min = 0, int max = INT_MAX);
-
-/**
  * \brief Get string user input.
  *
  * \param welcomeMessage - message to display to the user
@@ -48,6 +37,20 @@ std::vector<std::vector<int>> getMatrixUserInput(const std::string& welcomeMessa
  */
 bool getBoolConfirmation(const std::string& welcomeMessage);
 
+
+/**
+ * Template functions
+ */
+
+/**
+ * Get number from user input
+ *
+ * @param welcomeMessage - message to display to the user
+ * @param min - minimum value
+ * @param max - maximum value
+ *
+ * @return - typed user input
+ */
 template <typename T>
 T getNumber(const std::string& welcomeMessage, T min = std::numeric_limits<T>::lowest(), T max = std::numeric_limits<T>::max()) {
     T input;
@@ -73,12 +76,19 @@ T getNumber(const std::string& welcomeMessage, T min = std::numeric_limits<T>::l
     return input;
 }
 
+/**
+ * Get matrix user input
+ *
+ * @param welcomeMessage - message to display to the user
+ *
+ * @return matrix user input
+ */
 template <typename T>
 std::vector<std::vector<T>> getMatrixUserInput(const std::string& welcomeMessage) {
     std::vector<std::vector<T>> matrix;
 
-    int n = getIntUserInput("Input N (rows):", 1, 300);
-    int m = getIntUserInput("Input M (columns):", 1, 300);
+    int n = getNumber("Input N (rows):", 1, 300);
+    int m = getNumber("Input M (columns):", 1, 300);
 
     std::cout << welcomeMessage << std::endl;
     for (int i = 0; i < n; i++) {
