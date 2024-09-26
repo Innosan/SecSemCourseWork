@@ -10,6 +10,11 @@
 template <typename T>
 class InsertionSort : public ISort<T> {
 public:
+    InsertionSort() {
+        this->sorterId = 1; // Assign a unique identifier to BubbleSort
+        this->sorterName = "Insertion Sort";
+    }
+
     void sort(std::vector<T>& array, int size, SortOrder sortOrder) override {
         this->setComparisonOperation(sortOrder);
 

@@ -10,6 +10,10 @@
 template <typename T>
 class ShellSort : public ISort<T> {
 public:
+    ShellSort() {
+        this->sorterId = 4; // Assign a unique identifier to ShellSort
+        this->sorterName = "Shell Sort";
+    }
     void sort(std::vector<T>& array, int size, SortOrder sortOrder) override {
         this->setComparisonOperation(sortOrder);
 

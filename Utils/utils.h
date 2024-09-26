@@ -9,13 +9,18 @@
 #include <vector>
 #include <random>
 #include <string>
+#include <iomanip>
 
 template <typename T>
 void printVector(const std::vector<T>& array, const std::string& message) {
     std::cout << std::endl << message << std::endl;
 
-    for (int i : array) {
-        std::cout << i << " ";
+    for (T elem : array) {
+        if (elem == static_cast<int>(elem)) {
+            std::cout << static_cast<int>(elem) << " ";
+        } else {
+            std::cout << std::fixed << std::setprecision(5) << elem << " ";
+        }
     }
 
     std::cout << std::endl;
@@ -27,7 +32,7 @@ void printVector(const std::vector<T>& array, const std::string& message) {
  * @param num - the number to be sliced
  * @return a vector of digits
  */
-std::vector<int> splitIntoDigits(int num);
+std::pair<std::vector<int>, int> splitIntoDigits(double num);
 
 /**
  * Convert a vector of digits into a number
@@ -35,7 +40,7 @@ std::vector<int> splitIntoDigits(int num);
  * @param digits - the vector of digits
  * @return the number
  */
-int convertToNumber(const std::vector<int>& digits);
+double convertToNumber(const std::pair<std::vector<int>, int>& digitsAndDotPosition);
 
 template <typename T>
 void printMatrix(std::vector<std::vector<T>> matrix, const std::string& message) {
@@ -43,7 +48,11 @@ void printMatrix(std::vector<std::vector<T>> matrix, const std::string& message)
 
     for (auto row : matrix) {
         for (T elem : row) {
-            std::cout << elem << "\t";
+            if (elem == static_cast<int>(elem)) {
+                std::cout << static_cast<int>(elem) << "\t";
+            } else {
+                std::cout << std::fixed << std::setprecision(5) << elem << "\t";
+            }
         }
 
         std::cout << std::endl;

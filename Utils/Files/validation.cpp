@@ -30,7 +30,7 @@ bool isFileNameValid(const string& fileName) {
     // Regular expression to match a valid file name
     regex fileNameRegex("^[^\\/:*?\"<>|]+\\.csv");
     // Regular expression to match reserved file names in Windows
-    regex fileNameReservedNames("^(?:CON|PRN|AUX|NUL|COM[1-9]|LPT[1-9]|con|prn|aux|nul|com[1-9]|lpt[1-9])(?:\\..*)?$");
+    regex fileNameReservedNames("^(?:con|prn|aux|nul|com[1-9]|lpt[1-9])(?:\\..*)?$");
     // Regular expression to match reserved characters in Windows file names
     regex fileNameReservedChars("[\\/:*?\"<>|]");
 

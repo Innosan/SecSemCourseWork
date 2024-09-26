@@ -10,6 +10,10 @@
 template <typename T>
 class SelectionSort : public ISort<T> {
 public:
+    SelectionSort() {
+        this->sorterId = 3; // Assign a unique identifier to SelectionSort
+        this->sorterName = "Selection Sort";
+    }
     void sort(std::vector<T>& array, int size, SortOrder sortOrder) override {
         this->setComparisonOperation(sortOrder);
 

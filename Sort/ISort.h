@@ -19,6 +19,8 @@ class ISort {
 protected:
     int swapCount = 0;
     int compareCount = 0;
+    int sorterId = 0;
+    std::string sorterName;
 
     std::function<bool(T, T)> compareOperation;
 
@@ -63,6 +65,14 @@ public:
     void resetCounters() {
         swapCount = 0;
         compareCount = 0;
+    }
+
+    int getSortType() const {
+        return sorterId;
+    }
+
+    std::string getSorterName() const {
+        return sorterName;
     }
 
     virtual ~ISort() = default;

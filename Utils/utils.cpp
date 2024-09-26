@@ -4,37 +4,56 @@
 
 #include "utils.h"
 
-std::vector<int> splitIntoDigits(int num) {
-    // TODO: Ask about slicing number that ends with 0 (should we drop the zeros?)
+#include <sstream>
+#include <iomanip>
 
+std::pair<std::vector<int>, int> splitIntoDigits(double num) {
     std::vector<int> digits;
-    std::string numStr = std::to_string(num);
+    std::stringstream stream;
+    int dotPosition = -1;
 
-    for (char c : numStr) {
-        digits.push_back(c - '0'); // Convert char to int
+    // Check if the number is an integer or has less than 5 decimal places
+    if (num == static_cast<int>(num) || num * 100000 == static_cast<int>(num * 100000)) {
+        stream << num; // Convert to string without changing precision
+    } else {
+        stream << std::fixed << std::setprecision(5) << num; // Set precision to 5
     }
 
-    return digits;
-};
+    std::string numStr = stream.str();
 
-int convertToNumber(const std::vector<int>& digits) {
+    for (int i = 0; i < numStr.size(); i++) {
+        if (numStr[i] == '.') {
+            dotPosition = i;
+        } else {
+            // Ignore leading zero
+            if (!(i == 0 && numStr[i] == '0')) {
+                digits.push_back(numStr[i] - '0'); // Convert char to int
+            }
+        }
+    }
+
+    // Adjust the decimal point position if the number is less than 1
+    if (num < 1) {
+        dotPosition--;
+    }
+
+    return {digits, dotPosition};
+}
+
+double convertToNumber(const std::pair<std::vector<int>, int>& digitsAndDotPosition) {
     std::string numStr;
-
-    for (int digit : digits) {
-        numStr += std::to_string(digit);
+    for (int i : digitsAndDotPosition.first) {
+        numStr += std::to_string(i);
     }
-    int result = std::stoi(numStr);
 
-    // Count the number of digits in the original number
-    int originalDigits = digits.size();
-
-    // Count the number of digits in the resulting number
-    int resultDigits = result == 0 ? 1 : log10(result) + 1;
-
-    // If the original number has more digits, add the difference as leading zeros
-    if (originalDigits > resultDigits) {
-        result *= pow(10, originalDigits - resultDigits);
+    // If a decimal point was found, insert it at the correct position
+    if (digitsAndDotPosition.second != -1 && digitsAndDotPosition.second != digitsAndDotPosition.first.size()) {
+        numStr.insert(digitsAndDotPosition.second, ".");
     }
+
+    double result = std::stod(numStr);
 
     return result;
-};
+}
+
+

@@ -32,4 +32,14 @@ add_executable(SecSemCourseWork main.cpp
         Sort/runSorts.h
         Sort/runSorts.cpp
         Utils/Tables/tables.cpp
-        Utils/Tables/tables.h)
+        Utils/Tables/tables.h
+        Sort/ArraySorter.cpp
+        Sort/ArraySorter.h
+        Sort/ResultsHolder.cpp
+        Sort/ResultsHolder.h
+        Tests/TestCase.cpp
+        Tests/TestCase.h
+        Tests/TestResult.cpp
+        Tests/TestResult.h
+        Tests/runMainTests.cpp
+        Tests/runMainTests.h)

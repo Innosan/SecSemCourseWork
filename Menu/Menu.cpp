@@ -16,6 +16,8 @@
 
 #include "../Utils/Files/validation.h"
 #include "../Utils/Files/files.h"
+#include "../Sort/ArraySorter.h"
+#include "../Tests/runMainTests.h"
 
 void Menu::display() {
     std::cout << "\n";
@@ -43,25 +45,29 @@ void Menu::printWelcomeMessage() {
     std::cout << "in which you should indicate the number of comparisons and permutations of variables in each sorting method in each sorting method." << std::endl;
 };
 
-
-
 void Menu::initializeMenu() {
     std::vector<MenuOption> items = {
         MenuOption(Menu::LINE_BY_LINE, "Input matrix line by line",  []() {
-            bool matrixType = getBoolConfirmation("Int or double? (1/0)");
+            auto matrix = getMatrixUserInput<double>("Input matrix elements: ");
+            ArraySorter& arraySorter = ArraySorter::getInstance();
 
-            if (matrixType) {
-                auto matrix = getMatrixUserInput<int>("Input integer matrix elements: ");
-                printMatrix(matrix, "Unsorted matrix");
+            arraySorter.setMatrix(matrix);
+            arraySorter.printMainMatrix();
 
-                runSorts(matrix);
-                printMatrix(matrix, "Sorted matrix");
-            } else {
-                auto matrix = getMatrixUserInput<double>("Input double matrix elements: ");
-                printMatrix(matrix, "Unsorted matrix");
+            runSorts(matrix);
+            std::cout << "Sorted matrix:" << std::endl;
+            printMatrix(matrix, "Sorted matrix: ");
+
+            std::cout << std::endl << std::endl << "Main matrix:" << std::endl;
+
+            arraySorter.printMainMatrix();
+
+            auto isExport = getBoolConfirmation("Do you want to export the results to a file? (1/0): ");
+            if (isExport) {
+                arraySorter.getResultsHolder().exportCombinedResults();
             }
 
-            // TODO: Implement double sorting (slicing and sorting digits)
+            arraySorter.getResultsHolder().clearResults();
         }),
 
         MenuOption(Menu::FROM_FILE, "Import matrix from file",  []() {
@@ -75,17 +81,54 @@ void Menu::initializeMenu() {
             }
 
             auto matrix = getMatrixFromFile<double>(filePath);
-            printMatrix(matrix, "Unsorted matrix");
 
-            // TODO: Implement double sorting (slicing and sorting digits)
+            ArraySorter& arraySorter = ArraySorter::getInstance();
+
+            arraySorter.setMatrix(matrix);
+            arraySorter.printMainMatrix();
+
+            runSorts(matrix);
+            std::cout << "Sorted matrix:" << std::endl;
+            printMatrix(matrix, "Sorted matrix: ");
+
+            std::cout << std::endl << std::endl << "Main matrix:" << std::endl;
+
+            arraySorter.printMainMatrix();
+
+            auto isExport = getBoolConfirmation("Do you want to export the results to a file? (1/0): ");
+            if (isExport) {
+                arraySorter.getResultsHolder().exportCombinedResults();
+            }
+
+            arraySorter.getResultsHolder().clearResults();
         }),
 
         MenuOption(Menu::RANDOM, "Generate random matrix",  []() {
-            auto matrix = generateRandomMatrix<int>(1., 100.);
-            printMatrix(matrix, "Unsorted matrix");
+            ArraySorter& arraySorter = ArraySorter::getInstance();
+
+            auto matrix = generateRandomMatrix(1, 100);
+
+            arraySorter.setMatrix(matrix);
+            arraySorter.printMainMatrix();
 
             runSorts(matrix);
-            printMatrix(matrix, "Sorted matrix");
+            std::cout << "Sorted matrix:" << std::endl;
+            printMatrix(matrix, "Sorted matrix: ");
+
+            std::cout << std::endl << std::endl << "Main matrix:" << std::endl;
+
+            arraySorter.printMainMatrix();
+
+            auto isExport = getBoolConfirmation("Do you want to export the results to a file? (1/0): ");
+            if (isExport) {
+                arraySorter.getResultsHolder().exportCombinedResults();
+            }
+
+            arraySorter.getResultsHolder().clearResults();
+        }),
+
+        MenuOption(Menu::RUN_TESTS, "Run tests",  []() {
+            runMainTests();
         }),
 
         MenuOption(Menu::EXIT, "Exit",  []() { exit(EXIT_SUCCESS); })

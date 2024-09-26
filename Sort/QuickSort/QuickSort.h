@@ -48,6 +48,10 @@ class QuickSort : public ISort<T> {
         }
     }
 public:
+    QuickSort() {
+        this->sorterId = 2; // Assign a unique identifier to QuickSort
+        this->sorterName = "Quick Sort";
+    }
     void sort(std::vector<T>& array, int size, SortOrder sortOrder) override {
         this->setComparisonOperation(sortOrder);
         quickSort(array, 0, size - 1);

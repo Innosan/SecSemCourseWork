@@ -18,6 +18,7 @@ public:
         LINE_BY_LINE = 1,
         FROM_FILE,
         RANDOM,
+        RUN_TESTS,
         EXIT
     };
 

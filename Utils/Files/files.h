@@ -11,10 +11,11 @@
 #include <sstream>
 
 /**
- * Reads data from a file and constructs a matrix vector.
+ * Reads a matrix from a file.
  *
- * \param fileName The name of the file to read.
- * \return A vector of File objects, or an empty vector if there was an error.
+ * @tparam T - the type of the matrix elements
+ * @param fileName - the name of the file to read from
+ * @return - the matrix read from the file
  */
 template <typename T>
 std::vector<std::vector<T>> getMatrixFromFile(const std::string& fileName) {
@@ -62,5 +63,10 @@ std::vector<std::vector<T>> getMatrixFromFile(const std::string& fileName) {
     inputFile.close();
     return matrix;
 }
+
+// Function to prompt user for overwrite confirmation
+bool confirmOverwrite(const std::string& filename);
+
+std::string getOverwriteConfirmation(const std::string& fullPath);
 
 #endif //SECSEMCOURSEWORK_FILES_H

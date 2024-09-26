@@ -7,6 +7,6 @@
 
 #include <vector>
 
-void runSorts(std::vector<std::vector<int>>& matrix);
+void runSorts(std::vector<std::vector<double>>& matrix);
 
 #endif //SECSEMCOURSEWORK_RUNSORTS_H
